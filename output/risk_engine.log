@@ -1,0 +1,43 @@
+2026-05-23 10:57:58 | INFO    | main               | ======================================================================
+2026-05-23 10:57:58 | INFO    | main               | INTEGRATED RISK DASHBOARD — pipeline start @ 2026-05-23T10:57:58
+2026-05-23 10:57:58 | INFO    | main               | ======================================================================
+2026-05-23 10:57:58 | INFO    | database_setup     | Creating tables ...
+2026-05-23 10:57:58 | INFO    | database_setup     | Tables created.
+2026-05-23 10:57:58 | INFO    | database_setup     | Populating positions ...
+2026-05-23 10:57:58 | INFO    | database_setup     | Inserted 12 positions.
+2026-05-23 10:57:58 | INFO    | database_setup     | Generating 504 days of synthetic market history ...
+2026-05-23 10:57:58 | INFO    | database_setup     | Inserted 4032 market_data rows.
+2026-05-23 10:57:58 | INFO    | database_setup     | Populating risk_factors ...
+2026-05-23 10:57:58 | INFO    | database_setup     | Inserted 5544 risk_factor rows.
+2026-05-23 10:57:58 | INFO    | database_setup     | Database build complete: /home/claude/risk_dashboard/output/risk_dashboard.db
+2026-05-23 10:57:58 | INFO    | main               | --- Market risk (VaR / ES / Component / Incremental) ---
+2026-05-23 10:57:58 | INFO    | market_risk        | Loaded returns matrix (504, 8); portfolio MV = 687159992 INR
+2026-05-23 10:57:58 | INFO    | main               | Persisted 43 var_results rows.
+2026-05-23 10:57:58 | INFO    | main               | --- Option Greeks (BSM) ---
+2026-05-23 10:57:58 | INFO    | greeks_engine      | Greeks OPT_INFY_CALL: delta=130638 gamma=228.99 vega=881660 theta=-99466 rho=925944
+2026-05-23 10:57:58 | INFO    | greeks_engine      | Greeks OPT_HDFCBANK_PUT: delta=-40 gamma=0.52 vega=1835 theta=-233 rho=-246
+2026-05-23 10:57:58 | INFO    | greeks_engine      | Portfolio Greeks: delta-equiv=220523552 INR, gamma=229.51, vega=883495
+2026-05-23 10:57:58 | INFO    | main               | Persisted 2 greeks rows.
+2026-05-23 10:57:58 | INFO    | main               | --- Fixed income risk ---
+2026-05-23 10:57:58 | INFO    | fixed_income_risk  | FI_GSEC_5Y: P=99.79 ModDur=4.15 DV01=20687 INR Convexity=20.9
+2026-05-23 10:57:58 | INFO    | fixed_income_risk  | FI_CORP_10Y: P=98.31 ModDur=6.79 DV01=20027 INR Convexity=60.1
+2026-05-23 10:57:58 | INFO    | fixed_income_risk  | FI_TBILL_91D: P=98.42 ModDur=0.23 DV01=2302 INR Convexity=0.3
+2026-05-23 10:57:58 | INFO    | main               | Persisted 3 duration_metrics rows.
+2026-05-23 10:57:58 | INFO    | main               | --- Credit risk (IRB / Vasicek) ---
+2026-05-23 10:57:58 | INFO    | credit_risk        | CP_BANK_A: EL=900000 CreditVaR(99.9%)=9709760 (PD=0.80% condPD=9.43%)
+2026-05-23 10:57:58 | INFO    | credit_risk        | CP_CORP_B: EL=1485000 CreditVaR(99.9%)=10450673 (PD=1.50% condPD=12.06%)
+2026-05-23 10:57:58 | INFO    | credit_risk        | CP_CORP_C: EL=2520000 CreditVaR(99.9%)=12935445 (PD=3.50% condPD=21.47%)
+2026-05-23 10:57:58 | INFO    | credit_risk        | CP_CORP_D: EL=3510000 CreditVaR(99.9%)=14206128 (PD=6.00% condPD=30.28%)
+2026-05-23 10:57:58 | INFO    | main               | Persisted 4 credit_metrics rows.
+2026-05-23 10:57:58 | INFO    | credit_risk        | Portfolio MC Credit VaR(99.9%)=162585000 (EL=8415000, worst loss=283500000)
+2026-05-23 10:57:58 | INFO    | main               | --- Stress testing ---
+2026-05-23 10:57:58 | INFO    | stress_testing     | Scenario 'COVID Crash Mar-2020': total P&L = -165097026 INR, VaR impact = 10033872
+2026-05-23 10:57:58 | INFO    | stress_testing     | Scenario 'Taper Tantrum 2013': total P&L = 9001082 INR, VaR impact = 5016936
+2026-05-23 10:57:58 | INFO    | stress_testing     | Scenario 'IL&FS Crisis 2018': total P&L = -19683131 INR, VaR impact = 4180780
+2026-05-23 10:57:58 | INFO    | stress_testing     | Scenario 'Global Rate Shock +300bps': total P&L = -7077625 INR, VaR impact = 3344624
+2026-05-23 10:57:58 | INFO    | stress_testing     | Scenario 'INR Depreciation -15%': total P&L = 37574796 INR, VaR impact = 3762702
+2026-05-23 10:57:58 | INFO    | main               | Persisted 25 stress_test_results rows.
+2026-05-23 10:57:58 | INFO    | main               | --- Backtesting & Basel Traffic Light ---
+2026-05-23 10:57:58 | INFO    | market_risk        | Backtest @ 99%: 254 days, 5 exceptions (1.97% vs 1.0% exp.)
+2026-05-23 10:57:58 | INFO    | main               | Persisted 254 backtesting_results rows.
+2026-05-23 10:57:58 | INFO    | main               | Pipeline complete. Database ready for Power BI: /home/claude/risk_dashboard/output/risk_dashboard.db
